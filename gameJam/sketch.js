@@ -1,3 +1,9 @@
+"use strict";
+
+function preload() {
+
+}
+
 function setup() {
   createCanvas(400, 400);
 }
