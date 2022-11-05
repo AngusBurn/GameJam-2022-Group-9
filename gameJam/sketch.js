@@ -1,7 +1,7 @@
 "use strict";
 
-let titleFont;
-let menuImg, startButImg, optButImg, creditButImg;
+let titleFont, buttonFont;
+let menuImg, otherScreenImg, startButImg, optButImg, creditButImg, backButton;
 let startButSprite, optButSprite, creditButSprite;
 
 let menuBut = new menuButManager();
@@ -10,7 +10,7 @@ let menuBut = new menuButManager();
 let LOADING = 0;
 let MAIN_MENU = 1;
 let PLAY = 2;
-let SETTING = 3;
+let OPTIONS = 3;
 let CREDITS = 4;
 // initialising screen
 let currentScreen = LOADING;
@@ -18,7 +18,9 @@ let currentScreen = LOADING;
 function preload() {
   // assets
   titleFont = loadFont('./assets/fonts/vanilla_whale.otf');
+  buttonFont = loadFont('./assets/fonts/Rockwell-Bold.ttf');
   menuImg = loadImage('./assets/images/mainScreenImg.jpg');
+  otherScreenImg = loadImage('./assets/images/otherScreenImg.jpg');
 
   startButImg = loadImage('./assets/images/startButImg.png');  
   optButImg = loadImage('./assets/images/optButImg.png');
@@ -28,6 +30,8 @@ function preload() {
 function setup() {
   createCanvas(1000, 600);
   menuBut.creatingMenuBut();
+  menuBut.buttonFunctions();
+  menuBut.backBut();
 }
 
 function draw() {
@@ -44,8 +48,8 @@ function draw() {
       drawPlayScreen();
       console.log('play scre');
       break;
-    case SETTING:
-      drawSettingScreen();
+    case OPTIONS:
+      drawOptionsScreen();
       console.log('settings sc');
       break;
     case CREDITS:
@@ -82,16 +86,23 @@ function drawMainMenuScreen() {
   
   menuBut.drawMenuBut();
   menuBut.hoverMenuBut();
+  backButton.hide();
 }
 
 function drawPlayScreen() {
-
-}
-
-function drawSettingScreen() {
+  menuBut.hideMenuBut();
   
 }
 
-function drawCreditsScreen() {
+function drawOptionsScreen() {
+  image(otherScreenImg, 0, 0);
 
+  backButton.show();
 }
+
+function drawCreditsScreen() {
+  image(otherScreenImg, 0, 0);
+
+  backButton.show();
+}
+
