@@ -1,14 +1,17 @@
 "use strict";
 
 let titleFont;
-let menuImg;
+let menuImg, startButImg, optButImg, creditButImg;
+let startButSprite, optButSprite, creditButSprite;
+
+let menuBut = new menuButManager();
 
 // screens
 let LOADING = 0;
 let MAIN_MENU = 1;
 let PLAY = 2;
-let HIGH_SCORE = 3;
-let SETTING = 4;
+let SETTING = 3;
+let CREDITS = 4;
 // initialising screen
 let currentScreen = LOADING;
 
@@ -16,10 +19,15 @@ function preload() {
   // assets
   titleFont = loadFont('./assets/fonts/vanilla_whale.otf');
   menuImg = loadImage('./assets/images/mainScreenImg.jpg');
+
+  startButImg = loadImage('./assets/images/startButImg.png');  
+  optButImg = loadImage('./assets/images/optButImg.png');
+  creditButImg = loadImage('./assets/images/creditButImg.png');
 }
 
 function setup() {
   createCanvas(1000, 600);
+  menuBut.creatingMenuBut();
 }
 
 function draw() {
@@ -36,13 +44,13 @@ function draw() {
       drawPlayScreen();
       console.log('play scre');
       break;
-    case HIGH_SCORE:
-      drawHighScoreScreen();
-      console.log('highscor');
-      break;
     case SETTING:
       drawSettingScreen();
       console.log('settings sc');
+      break;
+    case CREDITS:
+      drawCreditsScreen();
+      console.log('Credit sc');
       break;
   }
 }
@@ -69,18 +77,21 @@ function drawMainMenuScreen() {
   textFont(titleFont);
   textSize(200);
   textAlign(CENTER, TOP);
-  text('Out Law', 0, 12,  width)
-  textFont('Helvetica');
+  text('Out Law', 0, 50,  width)
+  textFont('Helvetica');  
+  
+  menuBut.drawMenuBut();
+  menuBut.hoverMenuBut();
 }
 
 function drawPlayScreen() {
 
 }
 
-function drawHighScoreScreen() {
-
+function drawSettingScreen() {
+  
 }
 
-function drawSettingScreen() {
+function drawCreditsScreen() {
 
 }
