@@ -1,37 +1,27 @@
 "use strict";
 
-let titleFont, buttonFont;
-let menuImg, otherScreenImg, startButImg, optButImg, creditButImg, backButton;
-let startButSprite, optButSprite, creditButSprite;
+let tempSprite;
 
-let menuBut = new menuButManager();
-
-// screens
-let LOADING = 0;
-let MAIN_MENU = 1;
-let PLAY = 2;
-let OPTIONS = 3;
-let CREDITS = 4;
-// initialising screen
-let currentScreen = LOADING;
+let menuClass = new menuManager();
+let bgClass = new bgManager();
 
 function preload() {
   // assets
-  titleFont = loadFont('./assets/fonts/vanilla_whale.otf');
-  buttonFont = loadFont('./assets/fonts/Rockwell-Bold.ttf');
-  menuImg = loadImage('./assets/images/mainScreenImg.jpg');
-  otherScreenImg = loadImage('./assets/images/otherScreenImg.jpg');
-
-  startButImg = loadImage('./assets/images/startButImg.png');  
-  optButImg = loadImage('./assets/images/optButImg.png');
-  creditButImg = loadImage('./assets/images/creditButImg.png');
+  menuClass.menuLoadImg();
+  bgClass.bgLoadImg();
 }
 
 function setup() {
   createCanvas(1000, 600);
-  menuBut.creatingMenuBut();
-  menuBut.buttonFunctions();
-  menuBut.backBut();
+  menuClass.creatingMenuBut();
+  menuClass.buttonFunctions();
+  menuClass.backBut();
+
+  bgClass.bgGroups();
+  bgClass.extendedBg();
+  bgClass.createCloud();
+  bgClass.cloudSpawnNo();
+  bgClass.createRocks();
 }
 
 function draw() {
@@ -84,25 +74,26 @@ function drawMainMenuScreen() {
   text('Out Law', 0, 50,  width)
   textFont('Helvetica');  
   
-  menuBut.drawMenuBut();
-  menuBut.hoverMenuBut();
+  menuClass.drawMenuBut();
+  menuClass.hoverMenuBut();
   backButton.hide();
 }
 
 function drawPlayScreen() {
-  menuBut.hideMenuBut();
-  
+  menuClass.hideMenuBut();
+  bgClass.spawnClouds();
+  drawSprites();
 }
 
 function drawOptionsScreen() {
   image(otherScreenImg, 0, 0);
-
   backButton.show();
+
 }
 
 function drawCreditsScreen() {
   image(otherScreenImg, 0, 0);
-
   backButton.show();
+
 }
 
