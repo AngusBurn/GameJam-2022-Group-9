@@ -22,6 +22,9 @@ function setup() {
   bgClass.createCloud();
   bgClass.cloudSpawnNo();
   bgClass.createRocks();
+  bgClass.createBoundry();
+
+  createCharacter();
 }
 
 function draw() {
@@ -80,9 +83,15 @@ function drawMainMenuScreen() {
 }
 
 function drawPlayScreen() {
+  background(backgroundImg);
   menuClass.hideMenuBut();
+  bgClass.boundaryCollision();
   bgClass.spawnClouds();
   drawSprites();
+  if (mouseIsPressed) camera.zoom = 0.25
+	else camera.zoom = 1;
+  playerMovement();
+  playerCamera();
 }
 
 function drawOptionsScreen() {
@@ -97,3 +106,25 @@ function drawCreditsScreen() {
 
 }
 
+function createCharacter(){
+  tempSprite = createSprite(width/2, 500, 80, 80);
+  tempSprite.maxSpeed = 10;
+  tempSprite.friction = 0.1;
+  tempSprite.setCollider('rectangle', 0, 0, 80, 80);
+  tempSprite.debug = true;
+}
+
+function playerCamera(){
+  camera.position.x = tempSprite.position.x;
+}
+
+function playerMovement(){
+  //right
+  if (keyDown('A')){
+      tempSprite.setSpeed(5, 180);
+    }
+  // left
+  else if (keyDown('D')){
+      tempSprite.setSpeed(5, 0);
+    }
+}

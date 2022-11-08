@@ -1,5 +1,5 @@
-let backgroundImg, groundImg, cloudImg, smallRockImg, largeRockImg;
-let bg, cloudGroup;
+let backgroundImg, groundImg, cloudImg, smallRockImg, largeRockImg, buildingBoundaryImg;
+let bg, cloudGroup, boundaryGroup;
 let clouds = [];
 let SCENE_RIGHT = 1460;
 let SCENE_LEFT = -460;
@@ -17,6 +17,7 @@ class bgManager{
         cloudImg = loadImage('./assets/images/cloud.png');
         smallRockImg = loadImage('./assets/images/bgRock_1.png');
         largeRockImg = loadImage('./assets/images/bgRock_2.png');
+        buildingBoundaryImg = loadImage('./assets/images/jamesSaloon.png');
       }
       setup(){
           this.bgSprite.bgGroups();
@@ -24,10 +25,12 @@ class bgManager{
           this.bgSprite.cloudSpawnNo();
           this.bgSprite.extendedBg();
           this.bgSprite.createRocks();
+          this.bgSprite.createBoundry();
       }
       bgGroups(){
           cloudGroup = new Group();
           bg = new Group();
+          boundaryGroup = new Group();
       }
       extendedBg(){
           for (let i = 0; i < 2; i++){
@@ -57,7 +60,7 @@ class bgManager{
           // return cloudSprite;
       }
       createRocks(){
-          for (let i = 0; i < 4; i++){
+          for (let i = 0; i < 3; i++){
               let rockSmall = createSprite(random(SCENE_LEFT, SCENE_RIGHT), 355)
               rockSmall.addImage(smallRockImg)
               bg.add(rockSmall);
@@ -66,8 +69,14 @@ class bgManager{
               bg.add(rockLarge);
           }
       }
-      draw(){
+      createBoundry(){
+          let leftBuildingSprite = createSprite(SCENE_LEFT - 305, 300)
+          leftBuildingSprite.addImage(buildingBoundaryImg);
+          boundaryGroup.add(leftBuildingSprite);
+      }
+      drawPlayScreen(){
           this.bgSprite.spawnClouds();
+          this.bgSprite.boundaryCollision();
       }
       spawnClouds(){
           for (let i = 0; i < cloudGroup.length; i++){
@@ -76,5 +85,10 @@ class bgManager{
                   cloudGroup[i].position.y = random(0, 300);
               }
           }
+      }
+      boundaryCollision(){
+        if (tempSprite.collide(boundaryGroup)){
+            tempSprite.bounce(boundaryGroup)
+        }
       }
 }
