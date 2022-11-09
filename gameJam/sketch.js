@@ -22,6 +22,7 @@ function setup() {
   bgClass.createCloud();
   bgClass.cloudSpawnNo();
   bgClass.createRocks();
+  bgClass.createCactus();
   bgClass.createBoundry();
 
   createCharacter();

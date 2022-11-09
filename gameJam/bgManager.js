@@ -1,4 +1,4 @@
-let backgroundImg, groundImg, cloudImg, smallRockImg, largeRockImg, buildingBoundaryImg;
+let backgroundImg, groundImg, cloudImg, smallRockImg, largeRockImg, jamesSaloonImg, bankImg, cactusImg;
 let bg, cloudGroup, boundaryGroup;
 let clouds = [];
 let SCENE_RIGHT = 1460;
@@ -17,7 +17,9 @@ class bgManager{
         cloudImg = loadImage('./assets/images/cloud.png');
         smallRockImg = loadImage('./assets/images/bgRock_1.png');
         largeRockImg = loadImage('./assets/images/bgRock_2.png');
-        buildingBoundaryImg = loadImage('./assets/images/jamesSaloon.png');
+        jamesSaloonImg = loadImage('./assets/images/jamesSaloon.png');
+        bankImg = loadImage('./assets/images/bank.png');
+        cactusImg = loadImage('./assets/images/cactus.png');
       }
       setup(){
           this.bgSprite.bgGroups();
@@ -25,6 +27,7 @@ class bgManager{
           this.bgSprite.cloudSpawnNo();
           this.bgSprite.extendedBg();
           this.bgSprite.createRocks();
+          this.bgSprite.createCactus();
           this.bgSprite.createBoundry();
       }
       bgGroups(){
@@ -48,31 +51,40 @@ class bgManager{
           }
       }
       createCloud(x, y){
-          x = random(500, width);
-          y = random(0, 300);
+          x = random(SCENE_LEFT, SCENE_RIGHT);
+          y = random(0, 200);
           let cloudSize = random([0.25, 0.5]);
           let cloudSprite = createSprite(x, y);
           cloudSprite.addImage(cloudImg);
-          cloudSprite.setSpeed(random(1.5, 2), 180);
+          cloudSprite.setSpeed(random(0.5, 2), 180);
           cloudSprite.scale = cloudSize;
           cloudSprite.mass = 1 + cloudSprite.scale;
           cloudGroup.add(cloudSprite);
-          // return cloudSprite;
       }
       createRocks(){
           for (let i = 0; i < 3; i++){
-              let rockSmall = createSprite(random(SCENE_LEFT, SCENE_RIGHT), 355)
-              rockSmall.addImage(smallRockImg)
+              let rockSmall = createSprite(random(SCENE_LEFT, SCENE_RIGHT), 355);
+              rockSmall.addImage(smallRockImg);
               bg.add(rockSmall);
-              let rockLarge = createSprite(random(SCENE_LEFT, SCENE_RIGHT), 355)
-              rockLarge.addImage(largeRockImg)
+              let rockLarge = createSprite(random(SCENE_LEFT, SCENE_RIGHT), 355);
+              rockLarge.addImage(largeRockImg);
               bg.add(rockLarge);
           }
       }
+      createCactus(){
+        for (let i = 0; i < 2; i++){
+            let cactusSprite = createSprite(width * i, height/2);
+            cactusSprite.addImage(cactusImg);
+            bg.add(cactusSprite);
+        }
+      }
       createBoundry(){
-          let leftBuildingSprite = createSprite(SCENE_LEFT - 305, 300)
-          leftBuildingSprite.addImage(buildingBoundaryImg);
+          let leftBuildingSprite = createSprite(SCENE_LEFT - 305, 300);
+          leftBuildingSprite.addImage(jamesSaloonImg);
           boundaryGroup.add(leftBuildingSprite);
+          let rightBuildingSprite = createSprite(SCENE_RIGHT + 305, 300);
+          rightBuildingSprite.addImage(bankImg);
+          boundaryGroup.add(rightBuildingSprite);
       }
       drawPlayScreen(){
           this.bgSprite.spawnClouds();
@@ -88,7 +100,7 @@ class bgManager{
       }
       boundaryCollision(){
         if (tempSprite.collide(boundaryGroup)){
-            tempSprite.bounce(boundaryGroup)
+            tempSprite.bounce(boundaryGroup);
         }
       }
 }
