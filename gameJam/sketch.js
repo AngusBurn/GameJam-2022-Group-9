@@ -4,6 +4,7 @@ let menuClass = new menuManager();
 let bgClass = new bgManager();
 let enemy = new EnemyManager();
 let player = new PlayerManager();
+let video = new videoManager();
 
 let tempPlayer;
 
@@ -17,6 +18,7 @@ function preload() {
   // assets
   menuClass.menuLoadImg();
   bgClass.bgLoadImg();
+  video.videoLoad();
 }
 
 function setup() {
@@ -66,10 +68,7 @@ function drawLoadingScreen() {
   // place holder
   // will make a little animation for the loading screen :)
   background(100);
-  textFont('Helvetica');
-  textSize(50);
-  textAlign(CENTER, CENTER);
-  text('press space to start', 0, 500, width);
+  video.creatingText();
 
   if (keyWentDown('SPACE') && currentScreen == LOADING){
     currentScreen = MAIN_MENU;
@@ -86,7 +85,6 @@ function drawMainMenuScreen() {
   textAlign(CENTER, TOP);
   text('Out Law', 0, 50,  width)
   textFont('Helvetica');  
-  
   menuClass.drawMenuBut();
   menuClass.hoverMenuBut();
   backButton.hide();
