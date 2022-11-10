@@ -99,8 +99,8 @@ class bgManager{
           }
       }
       boundaryCollision(){
-        if (tempSprite.collide(boundaryGroup)){
-            tempSprite.bounce(boundaryGroup);
+        if (tempPlayer.collide(boundaryGroup)){
+            tempPlayer.bounce(boundaryGroup);
         }
       }
 }

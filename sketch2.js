@@ -23,7 +23,7 @@ function draw(){
   drawSprites();
 
   player.draw();
-  enemy.draw()
+  enemy.draw();
 
 
 }

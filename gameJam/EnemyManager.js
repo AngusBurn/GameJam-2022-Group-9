@@ -6,13 +6,10 @@ class EnemyManager{
       this.enemySprite;
       this.enemyGroup;
     }
-    
-    load(){
+    preload(){
 
     }
-
     start(){
-      
       this.enemyGroup = new Group();
      }
 
@@ -22,7 +19,7 @@ class EnemyManager{
       if(positionControl == 1){
         enemyX = width
       } else if(positionControl == 2){
-        enemyX = 0
+        enemyX = SCENE_RIGHT
       }
       if(this.enemyGroup.length == 5){
         enemytime = 0;
@@ -32,8 +29,7 @@ class EnemyManager{
         if(enemytime == 200){
           console.log(positionControl)
           enemytime = 0;
-          this.enemyGroup.add(this.makeEnemy(enemyX,height/2,25,45))
-          
+          this.enemyGroup.add(this.makeEnemy(enemyX,500,25,45))
         }
       }
 
@@ -41,22 +37,16 @@ class EnemyManager{
         deathtime = 0;
         tempEnemy.remove();
       }
-
-
-        
-        for(let i = 0; i < this.enemyGroup.length; i++){
-          this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
-        }
-        deathtime += 1;
+      for(let i = 0; i < this.enemyGroup.length; i++){
+        this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
+      }
+      deathtime += 1;
       console.log(this.enemyGroup.length)
      }
-    
     makeEnemy(x,y,size,size2){
       tempEnemy = createSprite(x,y,size,size2);
       tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
       tempEnemy.maxSpeed = 1;
       return tempEnemy;
      }
-
-
   }

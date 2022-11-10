@@ -1,9 +1,17 @@
 "use strict";
 
-let tempSprite;
-
 let menuClass = new menuManager();
 let bgClass = new bgManager();
+let enemy = new EnemyManager();
+let player = new PlayerManager();
+
+let tempPlayer;
+
+let positionControl;
+let enemyY;
+
+let enemytime = 0;
+let deathtime = 0;
 
 function preload() {
   // assets
@@ -25,7 +33,8 @@ function setup() {
   bgClass.createCactus();
   bgClass.createBoundry();
 
-  createCharacter();
+  player.setup();
+  enemy.start();
 }
 
 function draw() {
@@ -91,8 +100,9 @@ function drawPlayScreen() {
   drawSprites();
   if (mouseIsPressed) camera.zoom = 0.25
 	else camera.zoom = 1;
-  playerMovement();
-  playerCamera();
+
+  player.draw();
+  enemy.draw();
 }
 
 function drawOptionsScreen() {
@@ -107,25 +117,3 @@ function drawCreditsScreen() {
 
 }
 
-function createCharacter(){
-  tempSprite = createSprite(width/2, 500, 80, 80);
-  tempSprite.maxSpeed = 10;
-  tempSprite.friction = 0.1;
-  tempSprite.setCollider('rectangle', 0, 0, 80, 80);
-  tempSprite.debug = true;
-}
-
-function playerCamera(){
-  camera.position.x = tempSprite.position.x;
-}
-
-function playerMovement(){
-  //right
-  if (keyDown('A')){
-      tempSprite.setSpeed(5, 180);
-    }
-  // left
-  else if (keyDown('D')){
-      tempSprite.setSpeed(5, 0);
-    }
-}
