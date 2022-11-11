@@ -16,7 +16,7 @@ class menuManager{
       this.menuButSprite;
     }
     preload(){
-      this.menuButSprite.menuLoadImg();
+      this.menuLoadImg();
     }
     menuLoadImg(){
       titleFont = loadFont('./assets/fonts/vanilla_whale.otf');
@@ -29,9 +29,9 @@ class menuManager{
       creditButImg = loadImage('./assets/images/creditButImg.png');
     }
     setup(){
-      this.menuButSprite.creatingMenuBut();
-      this.menuButSprite.buttonFunctions();
-      this.menuButSprite.backBut();
+      this.creatingMenuBut();
+      this.buttonFunctions();
+      this.backBut();
     }
     creatingMenuBut(){
       startButSprite = createSprite(width/2, height/2 + 25);
@@ -64,8 +64,8 @@ class menuManager{
         }
     }
     drawMainMenuScreen(){
-      this.menuButSprite.drawMenuBut();
-      this.menuButSprite.hoverMenuBut();
+      this.drawMenuBut();
+      this.hoverMenuBut();
     }
     drawMenuBut(){
       drawSprite(startButSprite);

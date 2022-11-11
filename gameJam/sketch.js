@@ -4,6 +4,8 @@ let menuClass = new menuManager();
 let bgClass = new bgManager();
 let enemy = new EnemyManager();
 let player = new PlayerManager();
+let video = new videoManager();
+let sounds = new soundManager();
 
 let tempPlayer;
 
@@ -17,24 +19,18 @@ let pausetime = 0;
 let movement = true;
 
 function preload() {
-  // assets
-  menuClass.menuLoadImg();
-  bgClass.bgLoadImg();
+  menuClass.preload();
+  bgClass.preload();
+  video.preload();
+  sounds.preload();
 }
 
 function setup() {
   createCanvas(1000, 600);
-  menuClass.creatingMenuBut();
-  menuClass.buttonFunctions();
-  menuClass.backBut();
-
-  bgClass.bgGroups();
-  bgClass.extendedBg();
-  bgClass.createCloud();
-  bgClass.cloudSpawnNo();
-  bgClass.createRocks();
-  bgClass.createCactus();
-  bgClass.createBoundry();
+  
+  menuClass.setup();
+  bgClass.setup();
+  sounds.setup();
 
   player.setup();
   enemy.start();
@@ -69,10 +65,7 @@ function drawLoadingScreen() {
   // place holder
   // will make a little animation for the loading screen :)
   background(100);
-  textFont('Helvetica');
-  textSize(50);
-  textAlign(CENTER, CENTER);
-  text('press space to start', 0, 500, width);
+  video.creatingText();
 
   if (keyWentDown('SPACE') && currentScreen == LOADING){
     currentScreen = MAIN_MENU;
@@ -89,17 +82,16 @@ function drawMainMenuScreen() {
   textAlign(CENTER, TOP);
   text('Out Law', 0, 50,  width)
   textFont('Helvetica');  
-  
-  menuClass.drawMenuBut();
-  menuClass.hoverMenuBut();
+  menuClass.drawMainMenuScreen();
   backButton.hide();
 }
 
 function drawPlayScreen() {
   background(backgroundImg);
+  introMusic.pause();
   menuClass.hideMenuBut();
-  bgClass.boundaryCollision();
-  bgClass.spawnClouds();
+  bgClass.drawPlayScreen();
+
   drawSprites();
   if (mouseIsPressed) camera.zoom = 0.25
 	else camera.zoom = 1;
