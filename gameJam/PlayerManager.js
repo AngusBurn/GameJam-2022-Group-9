@@ -18,7 +18,7 @@ class PlayerManager{
         tempPlayer = createSprite(x,y,size,size2);
         tempPlayer.maxSpeed = 2;
         tempPlayer.friction = 0.1;
-        tempPlayer.setCollider('rectangle', 0, 0, 80, 80);
+        tempPlayer.setCollider('rectangle', 0, 0, 23, 43);
         tempPlayer.debug = true;
         return tempPlayer;
     }
@@ -27,10 +27,12 @@ class PlayerManager{
 
         if(keyIsDown(RIGHT_ARROW)){
             tempPlayer.addSpeed(2,0);
+            tempPlayer.rotateToDirection = 0;
         }
 
         if(keyIsDown(LEFT_ARROW)){
             tempPlayer.addSpeed(2,180);
+            tempPlayer.rotateToDirection = 180;
         }
     }
     playerCamera(){
