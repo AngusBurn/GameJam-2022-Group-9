@@ -6,7 +6,7 @@ class videoManager{
         this.vidSetup;
     }
     preload(){
-        this.videoSetup.videoLoad();
+        this.videoLoad();
     }
     videoLoad(){
         vid = createVideo('./assets/videos/LoadingScreen.mp4');

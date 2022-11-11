@@ -5,6 +5,7 @@ let bgClass = new bgManager();
 let enemy = new EnemyManager();
 let player = new PlayerManager();
 let video = new videoManager();
+let sounds = new soundManager();
 
 let tempPlayer;
 
@@ -15,25 +16,18 @@ let enemytime = 0;
 let deathtime = 0;
 
 function preload() {
-  // assets
-  menuClass.menuLoadImg();
-  bgClass.bgLoadImg();
-  video.videoLoad();
+  menuClass.preload();
+  bgClass.preload();
+  video.preload();
+  sounds.preload();
 }
 
 function setup() {
   createCanvas(1000, 600);
-  menuClass.creatingMenuBut();
-  menuClass.buttonFunctions();
-  menuClass.backBut();
-
-  bgClass.bgGroups();
-  bgClass.extendedBg();
-  bgClass.createCloud();
-  bgClass.cloudSpawnNo();
-  bgClass.createRocks();
-  bgClass.createCactus();
-  bgClass.createBoundry();
+  
+  menuClass.setup();
+  bgClass.setup();
+  sounds.setup();
 
   player.setup();
   enemy.start();
@@ -85,16 +79,16 @@ function drawMainMenuScreen() {
   textAlign(CENTER, TOP);
   text('Out Law', 0, 50,  width)
   textFont('Helvetica');  
-  menuClass.drawMenuBut();
-  menuClass.hoverMenuBut();
+  menuClass.drawMainMenuScreen();
   backButton.hide();
 }
 
 function drawPlayScreen() {
   background(backgroundImg);
+  introMusic.pause();
   menuClass.hideMenuBut();
-  bgClass.boundaryCollision();
-  bgClass.spawnClouds();
+  bgClass.drawPlayScreen();
+
   drawSprites();
   if (mouseIsPressed) camera.zoom = 0.25
 	else camera.zoom = 1;

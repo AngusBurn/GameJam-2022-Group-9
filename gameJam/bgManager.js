@@ -9,7 +9,7 @@ class bgManager{
         this.bgSprite;
       }
       preload(){
-        this.bgSprite.bgLoadImg();
+        this.bgLoadImg();
       }
       bgLoadImg(){
         backgroundImg = loadImage('./assets/images/background.png');
@@ -22,13 +22,13 @@ class bgManager{
         cactusImg = loadImage('./assets/images/cactus.png');
       }
       setup(){
-          this.bgSprite.bgGroups();
-          this.bgSprite.createCloud();
-          this.bgSprite.cloudSpawnNo();
-          this.bgSprite.extendedBg();
-          this.bgSprite.createRocks();
-          this.bgSprite.createCactus();
-          this.bgSprite.createBoundry();
+          this.bgGroups();
+          this.extendedBg();
+          this.createRocks();
+          this.createCactus();
+          this.createCloud();
+          this.cloudSpawnNo();
+          this.createBoundry();
       }
       bgGroups(){
           cloudGroup = new Group();
@@ -87,8 +87,8 @@ class bgManager{
           boundaryGroup.add(rightBuildingSprite);
       }
       drawPlayScreen(){
-          this.bgSprite.spawnClouds();
-          this.bgSprite.boundaryCollision();
+          this.spawnClouds();
+          this.boundaryCollision();
       }
       spawnClouds(){
           for (let i = 0; i < cloudGroup.length; i++){
