@@ -6,6 +6,7 @@ let enemy = new EnemyManager();
 let player = new PlayerManager();
 let video = new videoManager();
 let sounds = new soundManager();
+let credits = new creditsManager();
 
 let tempPlayer;
 
@@ -20,6 +21,7 @@ function preload() {
   bgClass.preload();
   video.preload();
   sounds.preload();
+  credits.preload();
 }
 
 function setup() {
@@ -100,12 +102,10 @@ function drawPlayScreen() {
 function drawOptionsScreen() {
   image(otherScreenImg, 0, 0);
   backButton.show();
-
 }
 
 function drawCreditsScreen() {
-  image(otherScreenImg, 0, 0);
   backButton.show();
-
+  credits.drawCreditsScreen();
 }
 
