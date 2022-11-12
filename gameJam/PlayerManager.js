@@ -27,7 +27,7 @@ class PlayerManager{
         tempPlayer.addImage(playerSpriteIdle);
         tempPlayer.maxSpeed = 2;
         tempPlayer.friction = 0.1;
-        tempPlayer.setCollider('rectangle', 0, 0, 80, 80);
+        tempPlayer.setCollider('rectangle', 0, 0, 23, 43);
         tempPlayer.addAnimation("idle",playerSpriteIdle);
         tempPlayer.addAnimation("walk",playerWalk1,playerWalk2,playerWalk3);
         tempPlayer.debug = true;
@@ -42,12 +42,14 @@ class PlayerManager{
             tempPlayer.mirrorX(1)
             tempPlayer.addSpeed(2,0);
             tempPlayer.changeAnimation("walk");
+            tempPlayer.rotateToDirection = 0;
         }
 
         if(keyIsDown(LEFT_ARROW)){
             tempPlayer.mirrorX(-1)
             tempPlayer.addSpeed(2,180);
             tempPlayer.changeAnimation("walk");
+            tempPlayer.rotateToDirection = 180;
         } 
     }
     playerCamera(){

@@ -4,6 +4,9 @@ let menuClass = new menuManager();
 let bgClass = new bgManager();
 let enemy = new EnemyManager();
 let player = new PlayerManager();
+let video = new videoManager();
+let sounds = new soundManager();
+let credits = new creditsManager();
 
 let tempPlayer;
 
@@ -13,10 +16,15 @@ let enemyY;
 let enemytime = 0;
 let deathtime = 0;
 
+let pausetime = 0;
+let movement = true;
+
 function preload() {
-  // assets
-  menuClass.menuLoadImg();
-  bgClass.bgLoadImg();
+  menuClass.preload();
+  bgClass.preload();
+  video.preload();
+  sounds.preload();
+  credits.preload();
   player.playerSpriteLoad();
   enemy.enemySpriteLoad();
 
@@ -24,17 +32,10 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 600);
-  menuClass.creatingMenuBut();
-  menuClass.buttonFunctions();
-  menuClass.backBut();
-
-  bgClass.bgGroups();
-  bgClass.extendedBg();
-  bgClass.createCloud();
-  bgClass.cloudSpawnNo();
-  bgClass.createRocks();
-  bgClass.createCactus();
-  bgClass.createBoundry();
+  
+  menuClass.setup();
+  bgClass.setup();
+  sounds.setup();
 
   player.setup();
   enemy.start();
@@ -44,23 +45,23 @@ function draw() {
   switch(currentScreen){
     case LOADING:
       drawLoadingScreen();
-      console.log('loading screen');
+      //console.log('loading screen');
       break;
     case MAIN_MENU:
       drawMainMenuScreen();
-      console.log('menu sc');
+      //console.log('menu sc');
       break;
     case PLAY:
       drawPlayScreen();
-      console.log('play scre');
+      //console.log('play scre');
       break;
     case OPTIONS:
       drawOptionsScreen();
-      console.log('settings sc');
+      //console.log('settings sc');
       break;
     case CREDITS:
       drawCreditsScreen();
-      console.log('Credit sc');
+      //console.log('Credit sc');
       break;
   }
 }
@@ -69,10 +70,7 @@ function drawLoadingScreen() {
   // place holder
   // will make a little animation for the loading screen :)
   background(100);
-  textFont('Helvetica');
-  textSize(50);
-  textAlign(CENTER, CENTER);
-  text('press space to start', 0, 500, width);
+  video.creatingText();
 
   if (keyWentDown('SPACE') && currentScreen == LOADING){
     currentScreen = MAIN_MENU;
@@ -89,17 +87,16 @@ function drawMainMenuScreen() {
   textAlign(CENTER, TOP);
   text('Out Law', 0, 50,  width)
   textFont('Helvetica');  
-  
-  menuClass.drawMenuBut();
-  menuClass.hoverMenuBut();
+  menuClass.drawMainMenuScreen();
   backButton.hide();
 }
 
 function drawPlayScreen() {
   background(backgroundImg);
+  introMusic.pause();
   menuClass.hideMenuBut();
-  bgClass.boundaryCollision();
-  bgClass.spawnClouds();
+  bgClass.drawPlayScreen();
+
   drawSprites();
   if (mouseIsPressed) camera.zoom = 0.25
 	else camera.zoom = 1;
@@ -111,12 +108,10 @@ function drawPlayScreen() {
 function drawOptionsScreen() {
   image(otherScreenImg, 0, 0);
   backButton.show();
-
 }
 
 function drawCreditsScreen() {
-  image(otherScreenImg, 0, 0);
   backButton.show();
-
+  credits.drawCreditsScreen();
 }
 
