@@ -26,6 +26,9 @@ function preload() {
   video.preload();
   sounds.preload();
   credits.preload();
+  player.playerSpriteLoad();
+  enemy.enemySpriteLoad();
+
 }
 
 function setup() {
@@ -92,6 +95,7 @@ function drawMainMenuScreen() {
 function drawPlayScreen() {
   background(backgroundImg);
   introMusic.pause();
+  playMusic.setVolume(0.05);
   menuClass.hideMenuBut();
   bgClass.drawPlayScreen();
 

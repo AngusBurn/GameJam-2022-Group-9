@@ -1,4 +1,5 @@
-//Credit goes to Marta
+
+let enemyspriteIdle, enemyWalk1, enemyWalk2, enemyWalk3;
 let tempEnemy;
 
 class EnemyManager{
@@ -7,7 +8,13 @@ class EnemyManager{
       this.enemyGroup;
     }
     preload(){
-
+      this.tempEnemy.enemySpriteLoad();
+    }
+    enemySpriteLoad(){
+      // enemySpriteIdle = loadImage("./assets/sprites/enemyIdle.png");
+      enemyWalk1 = loadImage("./assets/sprites/enemyWalk1.png");
+      enemyWalk2 = loadImage("./assets/sprites/enemyWalk2.png");
+      enemyWalk3 = loadImage("./assets/sprites/enemyWalk3.png");
     }
     start(){
       this.enemyGroup = new Group();
@@ -27,6 +34,14 @@ class EnemyManager{
       tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
       tempEnemy.setCollider('rectangle',0,0,23,43)
       tempEnemy.debug = true;
+      tempEnemy.addAnimation("walk",enemyWalk1,enemyWalk2,enemyWalk3);
+      tempEnemy.changeAnimation("walk")
+
+      if (tempPlayer.position.x > tempEnemy.position.x){
+        tempEnemy.mirrorX(1)
+      } else {
+        tempEnemy.mirrorX(-1)
+      }
       return tempEnemy;
      }
 
@@ -65,15 +80,11 @@ class EnemyManager{
           this.enemyGroup[i].maxSpeed = 1;
           this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
         }
-
-        if(tempPlayer.position.x > this.enemyGroup[i].position.x){
-          this.enemyGroup[i].direction = 1;
-        } else if(tempPlayer.position.x < this.enemyGroup[i].position.x){
-          this.enemyGroup[i].direction = 2;
-        }
     
        
       }
 
     }
+
+
   }
