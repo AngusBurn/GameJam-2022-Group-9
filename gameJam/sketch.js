@@ -7,6 +7,7 @@ let player = new PlayerManager();
 let video = new videoManager();
 let sounds = new soundManager();
 let credits = new creditsManager();
+let attack = new AttackManager();
 
 let tempPlayer;
 
@@ -100,6 +101,7 @@ function drawPlayScreen() {
 
   player.draw();
   enemy.draw();
+  attack.draw();
 }
 
 function drawOptionsScreen() {

@@ -17,32 +17,7 @@ class EnemyManager{
       this.enemySpawn()
 
 
-      for(let i = 0; i < this.enemyGroup.length; i++){
-
-        if(movement == true){
-          tempEnemy.maxSpeed = 1
-        } else if(movement == false){
-          tempEnemy.maxSpeed = 0
-        }
-        //if(pausetime == 50){
-        //  pausetime = 0;
-        //  movement = true;
-        //  this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
-        //}
-        if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) <= 50){
-          console.log('danger')
-          this.enemyGroup[i].maxSpeed = 0;
-        //}else if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) > 37 && movement == false){
-        //  pausetime += 1;
-        //} 
-        } else{
-          this.enemyGroup[i].maxSpeed = 1;
-          this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
-        }
-    
-       
-      }
-      this.enemyGroup.bounce(this.enemyGroup)
+      
       
 
       
@@ -73,5 +48,32 @@ class EnemyManager{
           this.enemyGroup.add(this.makeEnemy(enemyX,500,25,45))
         }
       }
+
+      for(let i = 0; i < this.enemyGroup.length; i++){
+
+        if(movement == true){
+          tempEnemy.maxSpeed = 1
+        } else if(movement == false){
+          tempEnemy.maxSpeed = 0
+        }
+
+        if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) <= 50){
+          console.log('danger')
+          this.enemyGroup[i].maxSpeed = 0;
+
+        } else{
+          this.enemyGroup[i].maxSpeed = 1;
+          this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
+        }
+
+        if(tempPlayer.position.x > this.enemyGroup[i].position.x){
+          this.enemyGroup[i].direction = 1;
+        } else if(tempPlayer.position.x < this.enemyGroup[i].position.x){
+          this.enemyGroup[i].direction = 2;
+        }
+    
+       
+      }
+
     }
   }
