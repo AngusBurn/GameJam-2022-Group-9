@@ -16,6 +16,9 @@ let enemyY;
 let enemytime = 0;
 let deathtime = 0;
 
+let pausetime = 0;
+let movement = true;
+
 function preload() {
   menuClass.preload();
   bgClass.preload();
@@ -39,23 +42,23 @@ function draw() {
   switch(currentScreen){
     case LOADING:
       drawLoadingScreen();
-      console.log('loading screen');
+      //console.log('loading screen');
       break;
     case MAIN_MENU:
       drawMainMenuScreen();
-      console.log('menu sc');
+      //console.log('menu sc');
       break;
     case PLAY:
       drawPlayScreen();
-      console.log('play scre');
+      //console.log('play scre');
       break;
     case OPTIONS:
       drawOptionsScreen();
-      console.log('settings sc');
+      //console.log('settings sc');
       break;
     case CREDITS:
       drawCreditsScreen();
-      console.log('Credit sc');
+      //console.log('Credit sc');
       break;
   }
 }
