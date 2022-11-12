@@ -47,11 +47,9 @@ class optionsManager{
         text('Game Music', width/2 + 75, height/2 + 75);
         MMVolume = MMSlider.value();
         introMusic.setVolume(MMVolume);
-        console.log(MMVolume)
     }
     drawPlayScreen(){
         GMVolume = GMSlider.value();
         playMusic.setVolume(GMVolume);
-        console.log(GMVolume)
     }
 }

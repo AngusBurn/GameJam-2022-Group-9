@@ -6,7 +6,7 @@ class AttackManager{
     }
 
     preload(){
-
+        enemy.start();
     }
 
     setup(){
@@ -15,6 +15,7 @@ class AttackManager{
 
     draw(){
         this.performAttack()
+        
 
     }
 
@@ -29,16 +30,19 @@ class AttackManager{
 
         if(keyIsDown(32)){
             attacknumber += 1
-            if(recovertime > 10 || recovertime == 0 && attacknumber > 0 && attacknumber < 13){
+            if(recovertime > 13 && attacknumber < 15){
+                if(tempPlayer.mirrorX() == 1){
+                    tempPlayer.setCollider('rectangle', 20, 0, 83, 43);
+                } else if(tempPlayer.mirrorX() == -1){
+                    tempPlayer.setCollider('rectangle', -20, 0, 83, 43);
+                }
+            } else if(attacknumber > 15){
+                tempPlayer.setCollider('rectangle', 0, 0, 23, 43)
+            }
+            if(recovertime > 13 || recovertime == 0 && attacknumber > 0 && attacknumber < 15){
 
                 tempPlayer.changeAnimation("punch")
-                if(tempPlayer.mirrorX() == 1){
-                    tempPlayer.setCollider('rectangle', 10, 0, 73, 43);
-                } else if(tempPlayer.mirrorX() == -1){
-                    tempPlayer.setCollider('rectangle', -10, 0, 73, 43);
-                } else{
-                    tempPlayer.setCollider('rectangle', 0, 0, 23, 43);
-                }
+
                 recovertime = 0;
                 if (punchSound.isPlaying() === false){
                     punchSound.play();
@@ -60,5 +64,6 @@ class AttackManager{
         return tempPAttack;
 
     }
+
 
 }

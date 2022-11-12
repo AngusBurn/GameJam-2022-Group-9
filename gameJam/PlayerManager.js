@@ -1,4 +1,5 @@
 let playerSpriteIdle, playerWalk1, playerWalk2, playerWalk3, playerPunch;
+let playerGroup
 
 class PlayerManager{
     constructor(){
@@ -16,10 +17,6 @@ class PlayerManager{
         playerPunch = loadImage("./assets/sprites/playerPunch.png")
     }
     setup(){
-        let playerX = width/2;
-        let playerY = 500;
-        this.playerGroup = new Group();
-        this.playerGroup.add(this.makePlayer(playerX,playerY,25,45))
     }
     draw(){
         this.keyPressed();

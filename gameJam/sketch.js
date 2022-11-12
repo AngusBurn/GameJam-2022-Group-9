@@ -10,6 +10,8 @@ let credits = new creditsManager();
 let options = new optionsManager();
 let attack = new AttackManager();
 
+let score = 0;
+
 let tempPlayer;
 let tempPAttack;
 
@@ -20,8 +22,15 @@ let enemytime = 0;
 let deathtime = 0;
 let attacktime = 0;
 let attacknumber = 0;
+
+let enemyattacktime = 0;
+let attackMode = false;
+
 let recovertime = 0;
-let recoverMode = true;
+let hittime = 0;
+let hit = false;
+
+let stuntime = 0;
 
 let pausetime = 0;
 let movement = true;
@@ -72,6 +81,7 @@ function draw() {
       //console.log('Credit sc');
       break;
   }
+
 }
 
 function drawLoadingScreen() {
@@ -113,6 +123,7 @@ function drawPlayScreen() {
   attack.draw();
 
 
+
 }
 
 function drawOptionsScreen() {
@@ -128,4 +139,6 @@ function drawCreditsScreen() {
   GMSlider.hide();
   credits.drawCreditsScreen();
 }
+
+
 
