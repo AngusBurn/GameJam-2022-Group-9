@@ -18,6 +18,8 @@ let enemytime = 0;
 let deathtime = 0;
 let attacktime = 0;
 let attacknumber = 0;
+let recovertime = 0;
+let recoverMode = true;
 
 let pausetime = 0;
 let movement = true;
@@ -42,6 +44,7 @@ function setup() {
 
   player.setup();
   enemy.start();
+  attack.setup();
 }
 
 function draw() {
@@ -108,7 +111,7 @@ function drawPlayScreen() {
   player.draw();
   enemy.draw();
   attack.draw();
-  console.log(attacknumber)
+
 }
 
 function drawOptionsScreen() {
