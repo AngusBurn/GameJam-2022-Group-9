@@ -91,6 +91,7 @@ function drawMainMenuScreen() {
 function drawPlayScreen() {
   background(backgroundImg);
   introMusic.pause();
+  playMusic.setVolume(0.05);
   menuClass.hideMenuBut();
   bgClass.drawPlayScreen();
 
