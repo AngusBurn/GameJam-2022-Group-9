@@ -1,3 +1,4 @@
+
 class AttackManager{
     constructor(){
         this.attackSprite
@@ -25,26 +26,37 @@ class AttackManager{
             attackX = tempPlayer.position.x - 20
         }
 
+
         if(keyIsDown(32)){
             attacknumber += 1
             if(recovertime > 10 || recovertime == 0 && attacknumber > 0 && attacknumber < 13){
 
                 tempPlayer.changeAnimation("punch")
-                this.attackGroup.add(this.makePlayerAttack(attackX,tempPlayer.position.y,30,10))
+                if(tempPlayer.mirrorX() == 1){
+                    tempPlayer.setCollider('rectangle', 10, 0, 73, 43);
+                } else if(tempPlayer.mirrorX() == -1){
+                    tempPlayer.setCollider('rectangle', -10, 0, 73, 43);
+                } else{
+                    tempPlayer.setCollider('rectangle', 0, 0, 23, 43);
+                }
                 recovertime = 0;
 
             }
         } else{
+            tempPlayer.setCollider('rectangle', 0, 0, 23, 43);
             attacknumber = 0
             recovertime += 1;
             
         }
+
     }
 
     makePlayerAttack(x,y,size,size2){
-        let tempPAttack = createSprite(x,y,size,size2);
+        tempPAttack = createSprite(x,y,size,size2);
+        tempPAttack.maxSpeed = 2;
         tempPAttack.debug = true;
         return tempPAttack;
 
     }
+
 }

@@ -11,6 +11,7 @@ let options = new optionsManager();
 let attack = new AttackManager();
 
 let tempPlayer;
+let tempPAttack;
 
 let positionControl;
 let enemyY;
@@ -116,6 +117,7 @@ function drawPlayScreen() {
   player.draw();
   enemy.draw();
   attack.draw();
+
 
 }
 

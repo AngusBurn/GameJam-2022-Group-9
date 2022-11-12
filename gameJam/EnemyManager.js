@@ -22,7 +22,7 @@ class EnemyManager{
 
     draw(){
       this.enemySpawn()
-
+      console.log(this.playerGroup)
 
       
       
@@ -88,6 +88,10 @@ class EnemyManager{
       }
 
     }
+
+    removeEnemy(player,enemy){
+      enemy.remove();
+  }
 
 
   }

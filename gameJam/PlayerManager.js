@@ -3,6 +3,7 @@ let playerSpriteIdle, playerWalk1, playerWalk2, playerWalk3, playerPunch;
 class PlayerManager{
     constructor(){
         this.playerSprite;
+        this.playerGroup;
     }
     preload(){
         this.tempPlayer.playerSpriteLoad();
@@ -17,7 +18,8 @@ class PlayerManager{
     setup(){
         let playerX = width/2;
         let playerY = 500;
-        this.playerSprite = this.makePlayer(playerX,playerY,25,45)
+        this.playerGroup = new Group();
+        this.playerGroup.add(this.makePlayer(playerX,playerY,25,45))
     }
     draw(){
         this.keyPressed();
