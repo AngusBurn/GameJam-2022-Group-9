@@ -8,6 +8,7 @@ let video = new videoManager();
 let sounds = new soundManager();
 let credits = new creditsManager();
 let options = new optionsManager();
+let attack = new AttackManager();
 
 let tempPlayer;
 
@@ -16,6 +17,8 @@ let enemyY;
 
 let enemytime = 0;
 let deathtime = 0;
+let attacktime = 0;
+let attacknumber = 0;
 
 let pausetime = 0;
 let movement = true;
@@ -109,6 +112,8 @@ function drawPlayScreen() {
 
   player.draw();
   enemy.draw();
+  attack.draw();
+  console.log(attacknumber)
 }
 
 function drawOptionsScreen() {

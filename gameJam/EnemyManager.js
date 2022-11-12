@@ -1,5 +1,5 @@
-//Credit goes to Marta
-let enemyspriteIdle, enemyWalk1, enemyWalk2, enemyWalk3;
+
+let enemySpriteIdle, enemyWalk1, enemyWalk2, enemyWalk3;
 let tempEnemy;
 
 class EnemyManager{
@@ -11,7 +11,7 @@ class EnemyManager{
       this.tempEnemy.enemySpriteLoad();
     }
     enemySpriteLoad(){
-      // enemySpriteIdle = loadImage("./assets/sprites/enemyIdle.png");
+      enemySpriteIdle = loadImage("./assets/sprites/enemyIdle.png");
       enemyWalk1 = loadImage("./assets/sprites/enemyWalk1.png");
       enemyWalk2 = loadImage("./assets/sprites/enemyWalk2.png");
       enemyWalk3 = loadImage("./assets/sprites/enemyWalk3.png");
@@ -24,32 +24,7 @@ class EnemyManager{
       this.enemySpawn()
 
 
-      for(let i = 0; i < this.enemyGroup.length; i++){
-
-        if(movement == true){
-          tempEnemy.maxSpeed = 1
-        } else if(movement == false){
-          tempEnemy.maxSpeed = 0
-        }
-        //if(pausetime == 50){
-        //  pausetime = 0;
-        //  movement = true;
-        //  this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
-        //}
-        if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) <= 50){
-          console.log('danger')
-          this.enemyGroup[i].maxSpeed = 0;
-        //}else if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) > 37 && movement == false){
-        //  pausetime += 1;
-        //} 
-        } else{
-          this.enemyGroup[i].maxSpeed = 1;
-          this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
-        }
-    
-       
-      }
-      this.enemyGroup.bounce(this.enemyGroup)
+      
       
 
       
@@ -59,6 +34,15 @@ class EnemyManager{
       tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
       tempEnemy.setCollider('rectangle',0,0,23,43)
       tempEnemy.debug = true;
+      tempEnemy.addAnimation("idle",enemySpriteIdle)
+      tempEnemy.addAnimation("walk",enemyWalk1,enemyWalk2,enemyWalk3);
+      tempEnemy.changeAnimation("walk")
+
+      if (tempPlayer.position.x > tempEnemy.position.x){
+        tempEnemy.mirrorX(1)
+      } else {
+        tempEnemy.mirrorX(-1)
+      }
       return tempEnemy;
      }
 
@@ -81,30 +65,29 @@ class EnemyManager{
         }
       }
 
-      if(deathtime == 400){
-        deathtime = 0;
-        tempEnemy.remove();
-      }
       for(let i = 0; i < this.enemyGroup.length; i++){
-        this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
-      }
-      deathtime += 1;
-      console.log(this.enemyGroup.length)
-     }
-    makeEnemy(x,y,size,size2){
-      
-      tempEnemy = createSprite(x,y,size,size2);
-      tempEnemy.addAnimation("walk",enemyWalk1,enemyWalk2,enemyWalk3);
-      tempEnemy.changeAnimation("walk")
-      tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
-      tempEnemy.maxSpeed = 1;
 
-      if (tempPlayer.position.x > tempEnemy.position.x){
-        tempEnemy.mirrorX(1)
-      } else {
-        tempEnemy.mirrorX(-1)
+        if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) <= 85){
+
+          movement = false;
+
+        } else{
+          movement = true;
+          this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
+        }
+
+        if(movement == true){
+          this.enemyGroup[i].maxSpeed = 1
+          this.enemyGroup[i].changeAnimation("walk")
+        } else if(movement == false){
+          this.enemyGroup[i].maxSpeed = 0
+          this.enemyGroup[i].changeAnimation("idle")
+        }
+    
+       
       }
 
-      return tempEnemy;
-     }
+    }
+
+
   }
