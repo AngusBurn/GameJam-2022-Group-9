@@ -40,7 +40,9 @@ class AttackManager{
                     tempPlayer.setCollider('rectangle', 0, 0, 23, 43);
                 }
                 recovertime = 0;
-
+                if (punchSound.isPlaying() === false){
+                    punchSound.play();
+                  }
             }
         } else{
             tempPlayer.setCollider('rectangle', 0, 0, 23, 43);

@@ -75,11 +75,8 @@ function draw() {
 }
 
 function drawLoadingScreen() {
-  // place holder
-  // will make a little animation for the loading screen :)
   background(100);
   video.creatingText();
-
   if (keyWentDown('SPACE') && currentScreen == LOADING){
     currentScreen = MAIN_MENU;
   }
@@ -109,10 +106,7 @@ function drawPlayScreen() {
   GMSlider.hide();
   menuClass.hideMenuBut();
   bgClass.drawPlayScreen();
-
   drawSprites();
-  if (mouseIsPressed) camera.zoom = 0.25
-	else camera.zoom = 1;
 
   player.draw();
   enemy.draw();
