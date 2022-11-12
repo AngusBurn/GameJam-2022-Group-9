@@ -1,5 +1,5 @@
 {
-    "credits": [
+    "creators": [
         {
             "Title": "Code",
             "Name": "Angus",
@@ -14,7 +14,9 @@
             "Title": "Code/Graphics",
             "Name": "Fletcher",
             "Link": ""
-        },
+        }
+    ],
+    "credits": [
         {
             "Title": "Menu music",
             "Name": "Peanut_Shaman",
@@ -24,6 +26,16 @@
             "Title": "Game Music",
             "Name": "code_box",
             "Link": "https://freesound.org/s/651670/"
+        },
+        {
+            "Title": "Punch Sound",
+            "Name": "Merrick079",
+            "Link": "https://freesound.org/s/566434/"
+        },
+        {
+            "Title": "Damage Sound",
+            "Name": "Raclure",
+            "Link": "https://freesound.org/s/458867/"
         }
     ]
 }
