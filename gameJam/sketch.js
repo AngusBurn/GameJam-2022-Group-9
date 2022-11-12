@@ -7,6 +7,7 @@ let player = new PlayerManager();
 let video = new videoManager();
 let sounds = new soundManager();
 let credits = new creditsManager();
+let options = new optionsManager();
 let attack = new AttackManager();
 
 let tempPlayer;
@@ -32,7 +33,7 @@ function preload() {
   credits.preload();
   player.playerSpriteLoad();
   enemy.enemySpriteLoad();
-
+  options.preload();
 }
 
 function setup() {
@@ -41,7 +42,7 @@ function setup() {
   menuClass.setup();
   bgClass.setup();
   sounds.setup();
-
+  options.setup();
   player.setup();
   enemy.start();
   attack.setup();
@@ -95,12 +96,16 @@ function drawMainMenuScreen() {
   textFont('Helvetica');  
   menuClass.drawMainMenuScreen();
   backButton.hide();
+  MMSlider.hide();
+  GMSlider.hide();
 }
 
 function drawPlayScreen() {
   background(backgroundImg);
   introMusic.pause();
-  playMusic.setVolume(0.05);
+  options.drawPlayScreen();
+  MMSlider.hide();
+  GMSlider.hide();
   menuClass.hideMenuBut();
   bgClass.drawPlayScreen();
 
@@ -115,12 +120,16 @@ function drawPlayScreen() {
 }
 
 function drawOptionsScreen() {
-  image(otherScreenImg, 0, 0);
   backButton.show();
+  MMSlider.show();
+  GMSlider.show()
+  options.drawOptionsScreen();
 }
 
 function drawCreditsScreen() {
   backButton.show();
+  MMSlider.hide();
+  GMSlider.hide();
   credits.drawCreditsScreen();
 }
 
