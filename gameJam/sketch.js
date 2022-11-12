@@ -17,6 +17,9 @@ function preload() {
   // assets
   menuClass.menuLoadImg();
   bgClass.bgLoadImg();
+  player.playerSpriteLoad();
+  enemy.enemySpriteLoad();
+
 }
 
 function setup() {
