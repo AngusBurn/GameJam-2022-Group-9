@@ -32,7 +32,9 @@ class AttackManager{
                 tempPlayer.changeAnimation("punch")
                 this.attackGroup.add(this.makePlayerAttack(attackX,tempPlayer.position.y,30,10))
                 recovertime = 0;
-
+                if (punchSound.isPlaying() === false){
+                    punchSound.play();
+                  }
             }
         } else{
             attacknumber = 0
