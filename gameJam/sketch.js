@@ -25,6 +25,9 @@ function preload() {
   video.preload();
   sounds.preload();
   credits.preload();
+  player.playerSpriteLoad();
+  enemy.enemySpriteLoad();
+
 }
 
 function setup() {

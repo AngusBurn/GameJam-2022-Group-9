@@ -1,4 +1,5 @@
 //Credit goes to Marta
+let enemyspriteIdle, enemyWalk1, enemyWalk2, enemyWalk3;
 let tempEnemy;
 
 class EnemyManager{
@@ -7,7 +8,13 @@ class EnemyManager{
       this.enemyGroup;
     }
     preload(){
-
+      this.tempEnemy.enemySpriteLoad();
+    }
+    enemySpriteLoad(){
+      // enemySpriteIdle = loadImage("./assets/sprites/enemyIdle.png");
+      enemyWalk1 = loadImage("./assets/sprites/enemyWalk1.png");
+      enemyWalk2 = loadImage("./assets/sprites/enemyWalk2.png");
+      enemyWalk3 = loadImage("./assets/sprites/enemyWalk3.png");
     }
     start(){
       this.enemyGroup = new Group();
@@ -73,5 +80,31 @@ class EnemyManager{
           this.enemyGroup.add(this.makeEnemy(enemyX,500,25,45))
         }
       }
-    }
+
+      if(deathtime == 400){
+        deathtime = 0;
+        tempEnemy.remove();
+      }
+      for(let i = 0; i < this.enemyGroup.length; i++){
+        this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
+      }
+      deathtime += 1;
+      console.log(this.enemyGroup.length)
+     }
+    makeEnemy(x,y,size,size2){
+      
+      tempEnemy = createSprite(x,y,size,size2);
+      tempEnemy.addAnimation("walk",enemyWalk1,enemyWalk2,enemyWalk3);
+      tempEnemy.changeAnimation("walk")
+      tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
+      tempEnemy.maxSpeed = 1;
+
+      if (tempPlayer.position.x > tempEnemy.position.x){
+        tempEnemy.mirrorX(1)
+      } else {
+        tempEnemy.mirrorX(-1)
+      }
+
+      return tempEnemy;
+     }
   }
