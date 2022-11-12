@@ -1,5 +1,5 @@
 
-let enemyspriteIdle, enemyWalk1, enemyWalk2, enemyWalk3;
+let enemySpriteIdle, enemyWalk1, enemyWalk2, enemyWalk3;
 let tempEnemy;
 
 class EnemyManager{
@@ -11,7 +11,7 @@ class EnemyManager{
       this.tempEnemy.enemySpriteLoad();
     }
     enemySpriteLoad(){
-      // enemySpriteIdle = loadImage("./assets/sprites/enemyIdle.png");
+      enemySpriteIdle = loadImage("./assets/sprites/enemyIdle.png");
       enemyWalk1 = loadImage("./assets/sprites/enemyWalk1.png");
       enemyWalk2 = loadImage("./assets/sprites/enemyWalk2.png");
       enemyWalk3 = loadImage("./assets/sprites/enemyWalk3.png");
@@ -34,6 +34,7 @@ class EnemyManager{
       tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
       tempEnemy.setCollider('rectangle',0,0,23,43)
       tempEnemy.debug = true;
+      tempEnemy.addAnimation("idle",enemySpriteIdle)
       tempEnemy.addAnimation("walk",enemyWalk1,enemyWalk2,enemyWalk3);
       tempEnemy.changeAnimation("walk")
 
@@ -66,19 +67,21 @@ class EnemyManager{
 
       for(let i = 0; i < this.enemyGroup.length; i++){
 
-        if(movement == true){
-          tempEnemy.maxSpeed = 1
-        } else if(movement == false){
-          tempEnemy.maxSpeed = 0
-        }
+        if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) <= 85){
 
-        if(dist(this.enemyGroup[i].position.x, this.enemyGroup[i].position.y, tempPlayer.position.x, tempPlayer.position.y) <= 50){
-          console.log('danger')
-          this.enemyGroup[i].maxSpeed = 0;
+          movement = false;
 
         } else{
-          this.enemyGroup[i].maxSpeed = 1;
+          movement = true;
           this.enemyGroup[i].attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
+        }
+
+        if(movement == true){
+          this.enemyGroup[i].maxSpeed = 1
+          this.enemyGroup[i].changeAnimation("walk")
+        } else if(movement == false){
+          this.enemyGroup[i].maxSpeed = 0
+          this.enemyGroup[i].changeAnimation("idle")
         }
     
        

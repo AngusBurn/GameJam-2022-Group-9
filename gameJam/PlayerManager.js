@@ -1,4 +1,4 @@
-let playerSpriteIdle, playerWalk1, playerWalk2, playerWalk3;
+let playerSpriteIdle, playerWalk1, playerWalk2, playerWalk3, playerPunch;
 
 class PlayerManager{
     constructor(){
@@ -12,6 +12,7 @@ class PlayerManager{
         playerWalk1 = loadImage("./assets/sprites/playerWalk1.png");
         playerWalk2 = loadImage("./assets/sprites/playerWalk2.png");
         playerWalk3 = loadImage("./assets/sprites/playerWalk3.png");
+        playerPunch = loadImage("./assets/sprites/playerPunch.png")
     }
     setup(){
         let playerX = width/2;
@@ -31,6 +32,7 @@ class PlayerManager{
         tempPlayer.setCollider('rectangle', 0, 0, 23, 43);
         tempPlayer.addAnimation("idle",playerSpriteIdle);
         tempPlayer.addAnimation("walk",playerWalk1,playerWalk2,playerWalk3);
+        tempPlayer.addAnimation("punch",playerPunch)
         tempPlayer.debug = true;
         return tempPlayer;
     }
@@ -42,15 +44,13 @@ class PlayerManager{
         if(keyIsDown(RIGHT_ARROW)){
             tempPlayer.mirrorX(1)
             tempPlayer.addSpeed(2,0);
-            tempPlayer.changeAnimation("walk");
-            tempPlayer.rotateToDirection = 0;
+            tempPlayer.changeAnimation("walk")
         }
 
         if(keyIsDown(LEFT_ARROW)){
             tempPlayer.mirrorX(-1)
             tempPlayer.addSpeed(2,180);
             tempPlayer.changeAnimation("walk");
-            tempPlayer.rotateToDirection = 180;
         } 
     }
     playerCamera(){
