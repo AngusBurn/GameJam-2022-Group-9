@@ -9,7 +9,6 @@ class soundManager{
     }
     soundLoad(){
         introMusic = loadSound('./assets/sounds/581415__peanut-shaman__western-bass.wav');
-    
     }
     setup(){
         this.soundScreenSelect();
