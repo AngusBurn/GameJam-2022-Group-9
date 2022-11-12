@@ -10,8 +10,8 @@ class soundManager{
         this.soundLoad();
     }
     soundLoad(){
-        introMusic = loadSound('assets/sounds/581415__peanut-shaman__western-bass.wav');
-        playMusic = loadSound('assets/sounds/651670__code-box__desert-snake.wav');
+        introMusic = loadSound('https://angusburn.github.io/GameJam-2022-Group-9/gameJam/assets/sounds/581415__peanut-shaman__western-bass.wav');
+        playMusic = loadSound('https://angusburn.github.io/GameJam-2022-Group-9/gameJam/assets/sounds/651670__code-box__desert-snake.wav');
     }
     setup(){
         this.soundScreenSelect();
