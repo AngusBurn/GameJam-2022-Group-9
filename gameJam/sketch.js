@@ -48,7 +48,7 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 600);
-  
+
   menuClass.setup();
   bgClass.setup();
   sounds.setup();
@@ -126,9 +126,6 @@ function drawPlayScreen() {
   player.draw();
   enemy.draw();
   attack.draw();
-
-
-
 }
 
 function drawOptionsScreen() {
@@ -147,10 +144,17 @@ function drawCreditsScreen() {
 
 function drawGameOverScreen() {
 background(0);
+push();
+fill('white');
+textSize(50);
+textAlign(CENTER, CENTER);
+text('Game Over', 500, height/2);
+text('press space to restart', 500, height/2 + 100);
+pop();
 if (keyWentDown(32)){
   location.reload();
 }
-
+ 
 }
 
 

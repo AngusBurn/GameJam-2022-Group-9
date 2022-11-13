@@ -38,6 +38,7 @@ class AttackManager{
                 }
             } else if(attacknumber > 15){
                 tempPlayer.setCollider('rectangle', 0, 0, 23, 43)
+                
             }
             if(recovertime > 13 || recovertime == 0 && attacknumber > 0 && attacknumber < 15){
 
@@ -46,7 +47,7 @@ class AttackManager{
                 recovertime = 0;
                 if (punchSound.isPlaying() === false){
                     punchSound.play();
-                  }
+                }
             }
         } else{
             tempPlayer.setCollider('rectangle', 0, 0, 23, 43);

@@ -155,6 +155,10 @@ class EnemyManager{
                 this.enemyGroup[i].setCollider('rectangle', -20, 0, 83, 43)
               }
               this.enemyGroup[i].changeAnimation("punch")
+              if (punchSound.isPlaying() === false){
+                punchSound.play();
+              }
+              
             }
   
           } else{
@@ -198,6 +202,9 @@ class EnemyManager{
       if(attackMode == true){
         if(this.enemyGroup.overlap(this.playerGroup)){
           tempPlayer.currentHP -= 0.5;
+          if (dmgSound.isPlaying() === false){
+            dmgSound.play();
+          }
         }
       }
       if(tempPlayer.currentHP <= 5){
