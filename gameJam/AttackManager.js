@@ -61,7 +61,7 @@ class AttackManager{
     makePlayerAttack(x,y,size,size2){
         tempPAttack = createSprite(x,y,size,size2);
         tempPAttack.maxSpeed = 2;
-        tempPAttack.debug = true;
+        
         return tempPAttack;
 
     }
