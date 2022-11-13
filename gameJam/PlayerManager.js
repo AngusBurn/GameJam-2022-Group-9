@@ -32,7 +32,7 @@ class PlayerManager{
         tempPlayer.addAnimation("idle",playerSpriteIdle);
         tempPlayer.addAnimation("walk",playerWalk1,playerWalk2,playerWalk3);
         tempPlayer.addAnimation("punch",playerPunch)
-        tempPlayer.debug = true;
+        // tempPlayer.debug = true;
         return tempPlayer;
     }
     keyPressed(){

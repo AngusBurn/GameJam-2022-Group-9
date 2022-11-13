@@ -65,7 +65,7 @@ class EnemyManager{
       tempEnemy.stun = false;
       tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
       tempEnemy.setCollider('rectangle',0,0,23,43)
-      //tempEnemy.debug = true;
+      // tempEnemy.debug = true;
       tempEnemy.addAnimation("idle",enemySpriteIdle)
       tempEnemy.addAnimation("walk",enemyWalk1,enemyWalk2,enemyWalk3);
       tempEnemy.addAnimation("punch",enemyPunch)
@@ -148,13 +148,17 @@ class EnemyManager{
             }
   
             if(attackMode == true && movement == false){
-              console.log("I punch thee")
+              // console.log("I punch thee")
               if(this.enemyGroup[i].mirrorX() == 1){
                 this.enemyGroup[i].setCollider('rectangle', 20, 0, 83, 43)
               } else if(this.enemyGroup[i].mirrorX() == -1){
                 this.enemyGroup[i].setCollider('rectangle', -20, 0, 83, 43)
               }
               this.enemyGroup[i].changeAnimation("punch")
+              if (punchSound.isPlaying() === false){
+                punchSound.play();
+              }
+              
             }
   
           } else{
@@ -198,10 +202,15 @@ class EnemyManager{
       if(attackMode == true){
         if(this.enemyGroup.overlap(this.playerGroup)){
           tempPlayer.currentHP -= 0.5;
+          if (dmgSound.isPlaying() === false){
+            dmgSound.play();
+          }
         }
       }
       if(tempPlayer.currentHP <= 5){
         this.enemyGroup.overlap(this.playerGroup,this.removePlayer)
+        currentScreen = GAMEOVER;
+        // console.log("you fuggen dead :DDDDD");
       }
       
 
