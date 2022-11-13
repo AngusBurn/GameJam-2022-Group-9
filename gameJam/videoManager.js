@@ -9,7 +9,7 @@ class videoManager{
         this.videoLoad();
     }
     videoLoad(){
-        vid = createVideo('./assets/videos/LoadingScreen.mp4');
+        vid = createVideo('https://github.com/AngusBurn/GameJam-2022-Group-9/blob/main/gameJam/assets/videos/LoadingScreen.mp4');
         // vid.size(1000, 600);
         vid.loop();
         vid.hide();
