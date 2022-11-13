@@ -8,6 +8,7 @@ let MAIN_MENU = 1;
 let PLAY = 2;
 let OPTIONS = 3;
 let CREDITS = 4;
+let GAMEOVER = 5;
 // initialising screen
 let currentScreen = LOADING;
 

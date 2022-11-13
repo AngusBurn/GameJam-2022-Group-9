@@ -80,7 +80,12 @@ function draw() {
       drawCreditsScreen();
       //console.log('Credit sc');
       break;
+    case GAMEOVER:
+      drawGameOverScreen();
+      //console.log('GameOver sc');
+      break;
   }
+  
 
 }
 
@@ -138,6 +143,14 @@ function drawCreditsScreen() {
   MMSlider.hide();
   GMSlider.hide();
   credits.drawCreditsScreen();
+}
+
+function drawGameOverScreen() {
+background(0);
+if (keyWentDown(32)){
+  location.reload();
+}
+
 }
 
 

@@ -202,6 +202,8 @@ class EnemyManager{
       }
       if(tempPlayer.currentHP <= 5){
         this.enemyGroup.overlap(this.playerGroup,this.removePlayer)
+        currentScreen = GAMEOVER;
+        console.log("you fuggen dead :DDDDD");
       }
       
 
