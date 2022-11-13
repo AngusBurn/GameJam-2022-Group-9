@@ -65,7 +65,7 @@ class EnemyManager{
       tempEnemy.stun = false;
       tempEnemy.attractionPoint(1,tempPlayer.position.x,tempPlayer.position.y)
       tempEnemy.setCollider('rectangle',0,0,23,43)
-      tempEnemy.debug = true;
+      //tempEnemy.debug = true;
       tempEnemy.addAnimation("idle",enemySpriteIdle)
       tempEnemy.addAnimation("walk",enemyWalk1,enemyWalk2,enemyWalk3);
       tempEnemy.addAnimation("punch",enemyPunch)
@@ -91,7 +91,7 @@ class EnemyManager{
       tempPlayer.addAnimation("idle",playerSpriteIdle);
       tempPlayer.addAnimation("walk",playerWalk1,playerWalk2,playerWalk3);
       tempPlayer.addAnimation("punch",playerPunch)
-      tempPlayer.debug = true;
+      //tempPlayer.debug = true;
       return tempPlayer;
   }
 
